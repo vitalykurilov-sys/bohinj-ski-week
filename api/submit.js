@@ -24,6 +24,22 @@ export default async function handler(req, res) {
     const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
     const PETER_EMAIL = process.env.PETER_EMAIL || 'teniska.sola@gmail.com';
 
+    // Debug: check env vars
+    console.log('ENV CHECK:', {
+      hasBotToken: !!TELEGRAM_BOT_TOKEN,
+      hasChatId: !!TELEGRAM_CHAT_ID,
+      tokenLength: TELEGRAM_BOT_TOKEN?.length,
+      chatId: TELEGRAM_CHAT_ID
+    });
+
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+      console.error('Missing Telegram credentials');
+      return res.status(500).json({
+        error: 'Server configuration error',
+        debug: { hasBotToken: !!TELEGRAM_BOT_TOKEN, hasChatId: !!TELEGRAM_CHAT_ID }
+      });
+    }
+
     // Format Telegram message
     const telegramMessage = `
 🎿 *New Booking Request!*
@@ -58,6 +74,20 @@ ${message || 'No message'}
 
     if (!telegramResponse.ok) {
       console.error('Telegram error:', await telegramResponse.text());
+    }
+
+    // Save to Google Sheets
+    const GOOGLE_SHEETS_URL = process.env.GOOGLE_SHEETS_URL;
+    if (GOOGLE_SHEETS_URL) {
+      try {
+        await fetch(GOOGLE_SHEETS_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone, dates, people, message })
+        });
+      } catch (e) {
+        console.error('Google Sheets error:', e);
+      }
     }
 
     // Send email to Peter via Resend (if configured)
