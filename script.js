@@ -21,36 +21,20 @@ document.getElementById('bookingForm').addEventListener('submit', async function
     submitButton.textContent = 'Sending...';
 
     try {
-        // Format email body
-        const emailBody = `
-New Booking Request - Learn to Ski in Bohinj
+        // Send to API endpoint
+        const response = await fetch('/api/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
 
-Name: ${data.name}
-Email: ${data.email}
-Phone: ${data.phone}
-Preferred Dates: ${data.dates || 'Not specified'}
-Number of People: ${data.people}
-
-Message:
-${data.message || 'No additional message'}
-
----
-Sent from: learntoskibohinj.com
-Date: ${new Date().toLocaleString()}
-        `;
-
-        // For now, we'll create a mailto link
-        // In production, you should use a backend service like Formspree, EmailJS, or your own API
-        const mailtoLink = `mailto:spo.youtravel@gmail.com?subject=Booking Request - ${data.name}&body=${encodeURIComponent(emailBody)}`;
+        if (!response.ok) {
+            throw new Error('Failed to submit');
+        }
 
         // Show success message
         formMessage.className = 'form-message success';
-        formMessage.textContent = 'Thank you for your booking request! We will contact you within 24 hours. Opening email client...';
-
-        // Open mailto link after a short delay
-        setTimeout(() => {
-            window.location.href = mailtoLink;
-        }, 1000);
+        formMessage.textContent = 'Thank you for your booking request! We will contact you within 24 hours.';
 
         // Reset form
         this.reset();
