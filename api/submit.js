@@ -13,11 +13,16 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, phone, dates, people, message } = req.body;
+    const { name, email, phone, dates, people, message, consent, marketing, consentTimestamp } = req.body;
 
-    // Validate required fields
-    if (!name || !email || !phone) {
+    // Validate required fields (phone is optional)
+    if (!name || !email) {
       return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    // GDPR: consent for data processing is mandatory
+    if (!consent) {
+      return res.status(400).json({ error: 'Data processing consent is required' });
     }
 
     const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
@@ -47,11 +52,14 @@ export default async function handler(req, res) {
 👤 *Name:* ${name}
 📧 *Email:* ${email}
 📱 *Phone:* ${phone}
-📅 *Dates:* ${dates || 'Not specified'}
+📅 *Week:* ${dates || 'Not specified'}
 👥 *People:* ${people || 'Not specified'}
 
 💬 *Message:*
 ${message || 'No message'}
+
+✅ Consent: ${consent ? 'YES' : 'NO'} (${consentTimestamp || 'no timestamp'})
+📬 Marketing: ${marketing ? 'YES' : 'NO'}
 
 ---
 📨 Forward to Peter: ${PETER_EMAIL}
@@ -83,7 +91,7 @@ ${message || 'No message'}
         await fetch(GOOGLE_SHEETS_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, phone, dates, people, message })
+          body: JSON.stringify({ name, email, phone, dates, people, message, consent, marketing, consentTimestamp })
         });
       } catch (e) {
         console.error('Google Sheets error:', e);

@@ -1,3 +1,22 @@
+// Cookie Banner
+(function() {
+    const banner = document.getElementById('cookieBanner');
+    const stored = localStorage.getItem('cookieConsent');
+    if (!stored) {
+        banner.hidden = false;
+    }
+    document.getElementById('cookieAccept').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        localStorage.setItem('cookieConsentDate', new Date().toISOString());
+        banner.hidden = true;
+    });
+    document.getElementById('cookieReject').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'rejected');
+        localStorage.setItem('cookieConsentDate', new Date().toISOString());
+        banner.hidden = true;
+    });
+})();
+
 // Booking Form Handler
 document.getElementById('bookingForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -9,7 +28,10 @@ document.getElementById('bookingForm').addEventListener('submit', async function
         phone: formData.get('phone'),
         dates: formData.get('dates'),
         people: formData.get('people'),
-        message: formData.get('message')
+        message: formData.get('message'),
+        consent: formData.get('consent') === 'on',
+        marketing: formData.get('marketing') === 'on',
+        consentTimestamp: new Date().toISOString()
     };
 
     // Get form message element

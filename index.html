@@ -8,6 +8,19 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Cookie Banner (ZEKom-2 compliant) -->
+    <div id="cookieBanner" class="cookie-banner" hidden>
+        <div class="cookie-banner-content">
+            <p class="cookie-banner-text">
+                We use only strictly necessary cookies to operate the booking form. We do not use analytics or tracking cookies. See our <a href="privacy.html">Privacy Policy</a>.
+            </p>
+            <div class="cookie-banner-buttons">
+                <button type="button" class="cookie-btn cookie-btn-reject" id="cookieReject">Reject</button>
+                <button type="button" class="cookie-btn cookie-btn-accept" id="cookieAccept">Accept</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -95,14 +108,14 @@
                     <h3>Sunday</h3>
                     <p class="time">3:00 PM</p>
                     <p>Arrival at the apartments, check-in and time to relax.</p>
-                    <p class="time">5:00–8:00 PM</p>
+                    <p class="time">5:00-8:00 PM</p>
                     <p>Collecting ski equipment, arranging ski passes, and receiving information for the upcoming days.</p>
                 </div>
 
                 <div class="day">
                     <h3>Monday</h3>
                     <p class="resort">Kozji hrbet Ski Resort</p>
-                    <p class="time">9:00 AM – 1:00 PM</p>
+                    <p class="time">9:00 AM - 1:00 PM</p>
                     <p>Skiing at Kozji hrbet (including a break for a snack).</p>
                     <p><strong>Afternoon:</strong> Free time for touristic Bohinj attractions.</p>
                 </div>
@@ -110,7 +123,7 @@
                 <div class="day">
                     <h3>Tuesday</h3>
                     <p class="resort">Kozji hrbet Ski Resort</p>
-                    <p class="time">9:00 AM – 1:00 PM</p>
+                    <p class="time">9:00 AM - 1:00 PM</p>
                     <p>Skiing at Kozji hrbet (including a break for a snack).</p>
                     <p><strong>Afternoon:</strong> Free time for ice skating or a short hike.</p>
                 </div>
@@ -118,15 +131,15 @@
                 <div class="day">
                     <h3>Wednesday</h3>
                     <p class="resort">Soriška Planina Ski Resort</p>
-                    <p class="time">9:00 AM – 1:00 PM</p>
+                    <p class="time">9:00 AM - 1:00 PM</p>
                     <p>Skiing at Soriška Planina (including a break for a snack).</p>
-                    <p><strong>Afternoon:</strong> Free time for an excursion – we recommend visiting Bled.</p>
+                    <p><strong>Afternoon:</strong> Free time for an excursion - we recommend visiting Bled.</p>
                 </div>
 
                 <div class="day">
                     <h3>Thursday</h3>
                     <p class="resort">Soriška Planina Ski Resort</p>
-                    <p class="time">9:00 AM – 1:00 PM</p>
+                    <p class="time">9:00 AM - 1:00 PM</p>
                     <p>Skiing at Soriška Planina (including a break for a snack).</p>
                     <p><strong>Evening:</strong> Ski party.</p>
                 </div>
@@ -136,7 +149,7 @@
                     <p class="resort">Vogel Ski Resort</p>
                     <p class="time">Morning</p>
                     <p>Check-out from the apartments.</p>
-                    <p class="time">10:00 AM – 2:00 PM</p>
+                    <p class="time">10:00 AM - 2:00 PM</p>
                     <p>Skiing at Vogel ski resort.</p>
                     <p><strong>Afternoon:</strong> Departure.</p>
                 </div>
@@ -250,12 +263,23 @@
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone *</label>
-                    <input type="tel" id="phone" name="phone" required>
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
                 </div>
                 <div class="form-group">
-                    <label for="dates">Preferred Dates</label>
-                    <input type="text" id="dates" name="dates" placeholder="e.g., February 15-20, 2025">
+                    <label for="dates">Preferred Week *</label>
+                    <select id="dates" name="dates" required>
+                        <option value="">Select a week</option>
+                        <option value="Dec 6-11, 2026">Dec 6-11, 2026</option>
+                        <option value="Dec 13-18, 2026">Dec 13-18, 2026</option>
+                        <option value="Jan 10-15, 2027">Jan 10-15, 2027</option>
+                        <option value="Jan 17-22, 2027">Jan 17-22, 2027</option>
+                        <option value="Jan 24-29, 2027">Jan 24-29, 2027</option>
+                        <option value="Feb 7-12, 2027">Feb 7-12, 2027</option>
+                        <option value="Feb 14-19, 2027">Feb 14-19, 2027</option>
+                        <option value="Feb 21-26, 2027">Feb 21-26, 2027</option>
+                        <option value="Mar 7-12, 2027">Mar 7-12, 2027</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="people">Number of People *</label>
@@ -264,6 +288,18 @@
                 <div class="form-group">
                     <label for="message">Message</label>
                     <textarea id="message" name="message" rows="4" placeholder="Any special requests or questions?"></textarea>
+                </div>
+                <div class="form-group form-consent">
+                    <label class="consent-label">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <span>I agree to the processing of my personal data for handling this booking inquiry. See <a href="privacy.html" target="_blank">Privacy Policy</a>. *</span>
+                    </label>
+                </div>
+                <div class="form-group form-consent">
+                    <label class="consent-label">
+                        <input type="checkbox" id="marketing" name="marketing">
+                        <span>I would like to receive occasional updates about Bohinj Ski Week (optional).</span>
+                    </label>
                 </div>
                 <button type="submit" class="submit-button">Send Booking Request</button>
                 <p class="form-note">We'll get back to you within 24 hours</p>
@@ -277,10 +313,9 @@
         <div class="container">
             <h2>Contact</h2>
             <div class="contact-info">
-                <p><strong>Apartmaji Žnidar, Daša Žnidar S.P.</strong></p>
-                <p>Savska cesta 6</p>
-                <p>4264 Bohinjska Bistrica</p>
-                <p>Slovenia</p>
+                <p><strong>Apartmaji Žnidar, Daša Žnidar s.p.</strong></p>
+                <p>Savska cesta 6, 4264 Bohinjska Bistrica, Slovenia</p>
+                <p>Phone: +386 51 362 390</p>
             </div>
         </div>
     </section>
@@ -288,7 +323,17 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Apartmaji Žnidar. All rights reserved.</p>
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <p><strong>Apartmaji Žnidar, Daša Žnidar s.p.</strong></p>
+                    <p>Savska cesta 6, 4264 Bohinjska Bistrica, Slovenia</p>
+                    <p>Davčna številka: SI [XXXXXXXX]</p>
+                </div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Apartmaji Žnidar. All rights reserved.</p>
         </div>
     </footer>
 
