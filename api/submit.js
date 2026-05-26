@@ -45,26 +45,13 @@ export default async function handler(req, res) {
       });
     }
 
-    // Format Telegram message
-    const telegramMessage = `
-🎿 *New Booking Request!*
+    // Telegram notification without personal data (GDPR: no PII via Telegram)
+    const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/1d2izG1DEoKwpEQx1kUgB3bpvU_9IgzJ8Vs0IKHd-67g/edit';
+    const telegramMessage = `New booking inquiry - ${dates || 'dates not specified'}, ${people || '?'} people
 
-👤 *Name:* ${name}
-📧 *Email:* ${email}
-📱 *Phone:* ${phone}
-📅 *Week:* ${dates || 'Not specified'}
-👥 *People:* ${people || 'Not specified'}
+Check details: ${SHEETS_URL}
 
-💬 *Message:*
-${message || 'No message'}
-
-✅ Consent: ${consent ? 'YES' : 'NO'} (${consentTimestamp || 'no timestamp'})
-📬 Marketing: ${marketing ? 'YES' : 'NO'}
-
----
-📨 Forward to Peter: ${PETER_EMAIL}
-🕐 ${new Date().toLocaleString('en-GB', { timeZone: 'Europe/Ljubljana' })}
-    `.trim();
+${new Date().toLocaleString('en-GB', { timeZone: 'Europe/Ljubljana' })}`.trim();
 
     // Send to Telegram
     const telegramResponse = await fetch(
