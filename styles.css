@@ -871,6 +871,12 @@ html {
 .footer-links {
     display: flex;
     gap: 1.5rem;
+    align-items: center;
+}
+
+.footer-links .social-icon {
+    display: inline-flex;
+    line-height: 0;
 }
 
 .footer-links a {
