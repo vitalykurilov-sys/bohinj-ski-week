@@ -61,8 +61,7 @@ ${new Date().toLocaleString('en-GB', { timeZone: 'Europe/Ljubljana' })}`.trim();
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: TELEGRAM_CHAT_ID,
-          text: telegramMessage,
-          parse_mode: 'Markdown'
+          text: telegramMessage
         })
       }
     );

@@ -112,3 +112,66 @@ document.querySelectorAll('section').forEach(section => {
 // Hero is always visible
 document.querySelector('.hero').style.opacity = '1';
 document.querySelector('.hero').style.transform = 'translateY(0)';
+
+// Apartment Gallery Lightbox
+(function() {
+    const photos = [
+        { src: 'images/stay-living.jpg', alt: 'Living and dining area' },
+        { src: 'images/stay-dining.jpg', alt: 'Dining table' },
+        { src: 'images/stay-lounge.jpg', alt: 'Lounge area' },
+        { src: 'images/stay-kitchen.jpg', alt: 'Kitchen' },
+        { src: 'images/stay-bedroom1.jpg', alt: 'Double bedroom' },
+        { src: 'images/stay-bedroom2.jpg', alt: 'Twin bedroom' },
+        { src: 'images/stay-rustic2.jpg', alt: 'Double bedroom' },
+        { src: 'images/stay-bedroom3.jpg', alt: 'Attic bedroom with beams' },
+        { src: 'images/stay-rustic1.jpg', alt: 'Attic bedroom with beams' },
+        { src: 'images/stay-attic.jpg', alt: 'Attic twin bedroom' },
+        { src: 'images/stay-bathroom.jpg', alt: 'Bathroom with shower' },
+        { src: 'images/stay-bath2.jpg', alt: 'Bathroom' }
+    ];
+
+    const trigger = document.getElementById('apartmentsTrigger');
+    const lightbox = document.getElementById('lightbox');
+    if (!trigger || !lightbox) return;
+
+    const img = document.getElementById('lightboxImg');
+    const counter = document.getElementById('lightboxCounter');
+    let current = 0;
+
+    function show(i) {
+        current = (i + photos.length) % photos.length;
+        img.src = photos[current].src;
+        img.alt = photos[current].alt;
+        counter.textContent = (current + 1) + ' / ' + photos.length;
+    }
+
+    function open() {
+        show(0);
+        lightbox.hidden = false;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+        lightbox.hidden = true;
+        document.body.style.overflow = '';
+    }
+
+    trigger.addEventListener('click', open);
+    trigger.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+    document.getElementById('lightboxClose').addEventListener('click', close);
+    document.getElementById('lightboxNext').addEventListener('click', () => show(current + 1));
+    document.getElementById('lightboxPrev').addEventListener('click', () => show(current - 1));
+
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) close();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (lightbox.hidden) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') show(current + 1);
+        if (e.key === 'ArrowLeft') show(current - 1);
+    });
+})();

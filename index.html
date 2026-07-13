@@ -157,32 +157,50 @@
         </div>
     </section>
 
-    <!-- Accommodation Section -->
-    <section class="accommodation">
+    <!-- Where You'll Stay Section -->
+    <section class="stay">
         <div class="container">
-            <h2>Accommodation & Options</h2>
+            <h2>Where You'll Stay</h2>
+            <p class="lead">Comfortable self-catering apartments in Bohinjska Bistrica, a short drive from the slopes. Plenty of space to relax after a day on the snow.</p>
             <div class="accommodation-grid">
-                <div class="accommodation-item">
-                    <img src="images/apartments.jpg" alt="Apartments in Bohinj">
+                <div class="accommodation-item stay-trigger" id="apartmentsTrigger" role="button" tabindex="0" aria-label="Open apartment photo gallery">
+                    <div class="stay-thumb">
+                        <img src="images/apartments.jpg" alt="Apartments in Bohinj">
+                        <span class="stay-thumb-badge">View photos (12)</span>
+                    </div>
                     <h3>Apartments in Bohinj</h3>
                     <ul>
-                        <li>Spacious self-catering options</li>
-                        <li>Modern amenities</li>
-                        <li>Great for longer stays</li>
+                        <li>Self-catering with fully equipped kitchen</li>
+                        <li>Bedrooms, living room and private bathroom</li>
+                        <li>Layouts for couples, families and groups</li>
+                        <li>EV charging available</li>
                     </ul>
                 </div>
                 <div class="accommodation-item">
-                    <img src="images/aquapark.jpg" alt="Aquapark">
-                    <h3>Aquapark</h3>
+                    <div class="stay-thumb">
+                        <img src="images/aquapark.jpg" alt="Aquapark and wellness">
+                    </div>
+                    <h3>Aquapark &amp; Wellness</h3>
                     <ul>
                         <li>Swimming pools</li>
                         <li>Saunas</li>
-                        <li>Wellness facilities</li>
+                        <li>Wellness facilities nearby</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Apartment Gallery Lightbox -->
+    <div class="lightbox" id="lightbox" hidden>
+        <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close gallery">&times;</button>
+        <button type="button" class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous photo">&#8249;</button>
+        <div class="lightbox-stage">
+            <img src="" alt="Apartment photo" id="lightboxImg">
+            <p class="lightbox-counter" id="lightboxCounter"></p>
+        </div>
+        <button type="button" class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next photo">&#8250;</button>
+    </div>
 
     <!-- Prices Section -->
     <section class="prices">
@@ -249,6 +267,36 @@
         </div>
     </section>
 
+    <!-- How Booking Works Section -->
+    <section class="booking-steps">
+        <div class="container">
+            <h2>How Booking Works</h2>
+            <p class="lead">No payment is taken on this website. You only pay after we confirm your dates with you.</p>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Send your request</h3>
+                    <p>Fill in the form below with your preferred week and group size. It takes a minute and costs nothing.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We get in touch</h3>
+                    <p>We reply within 24 hours to confirm availability for your week and answer any questions you have.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Reserve your spot</h3>
+                    <p>Once your dates are confirmed, we send you the payment details for a 30% deposit. Your booking is secured when the deposit is received.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Pay the balance</h3>
+                    <p>The remaining amount is paid before your trip. No money is charged automatically and there are no hidden fees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Booking Section -->
     <section class="booking" id="booking">
         <div class="container">
@@ -270,14 +318,16 @@
                     <label for="dates">Preferred Week *</label>
                     <select id="dates" name="dates" required>
                         <option value="">Select a week</option>
-                        <option value="Dec 6-11, 2026">Dec 6-11, 2026</option>
                         <option value="Dec 13-18, 2026">Dec 13-18, 2026</option>
+                        <option value="Dec 20-25, 2026">Dec 20-25, 2026</option>
+                        <option value="Dec 31 - Jan 5, 2027">Dec 31 - Jan 5, 2027</option>
                         <option value="Jan 10-15, 2027">Jan 10-15, 2027</option>
                         <option value="Jan 17-22, 2027">Jan 17-22, 2027</option>
                         <option value="Jan 24-29, 2027">Jan 24-29, 2027</option>
                         <option value="Feb 7-12, 2027">Feb 7-12, 2027</option>
                         <option value="Feb 14-19, 2027">Feb 14-19, 2027</option>
                         <option value="Feb 21-26, 2027">Feb 21-26, 2027</option>
+                        <option value="Feb 28 - Mar 5, 2027">Feb 28 - Mar 5, 2027</option>
                         <option value="Mar 7-12, 2027">Mar 7-12, 2027</option>
                     </select>
                 </div>
@@ -327,10 +377,12 @@
                 <div class="footer-info">
                     <p><strong>Apartmaji Žnidar, Daša Žnidar s.p.</strong></p>
                     <p>Savska cesta 6, 4264 Bohinjska Bistrica, Slovenia</p>
-                    <p>Davčna številka: SI [XXXXXXXX]</p>
+                    <p>Davčna številka: SI92460909</p>
                 </div>
                 <div class="footer-links">
                     <a href="privacy.html">Privacy Policy</a>
+                    <a href="https://www.facebook.com/bohinjskiweek" target="_blank" rel="noopener">Facebook</a>
+                    <a href="https://www.instagram.com/bohinjskiweek" target="_blank" rel="noopener">Instagram</a>
                 </div>
             </div>
             <p class="footer-copyright">&copy; 2026 Apartmaji Žnidar. All rights reserved.</p>

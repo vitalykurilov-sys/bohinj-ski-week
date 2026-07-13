@@ -474,6 +474,184 @@ h3 {
     display: block;
 }
 
+/* How Booking Works Section */
+.booking-steps {
+    background: #f8f9fa;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.step {
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.step-number {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #222;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+}
+
+.step h3 {
+    color: #222;
+    font-size: 1.25rem;
+    margin-bottom: 0.7rem;
+}
+
+.step p {
+    color: #555;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+/* Where You'll Stay Section */
+.stay {
+    background: #fff;
+}
+
+.stay .accommodation-grid {
+    margin-top: 1rem;
+}
+
+.stay-trigger {
+    cursor: pointer;
+}
+
+.stay-thumb {
+    position: relative;
+    overflow: hidden;
+}
+
+.stay-thumb img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.stay-trigger:hover .stay-thumb img {
+    transform: scale(1.04);
+    transition: transform 0.4s ease;
+}
+
+.stay-thumb-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    border-radius: 50px;
+    backdrop-filter: blur(2px);
+}
+
+/* Apartment Gallery Lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0,0,0,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+.lightbox[hidden] {
+    display: none;
+}
+
+.lightbox-stage {
+    max-width: 1000px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-stage img {
+    max-width: 100%;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.lightbox-counter {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+    margin-top: 1rem;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.6rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+.lightbox-nav {
+    background: rgba(255,255,255,0.12);
+    border: none;
+    color: #fff;
+    font-size: 2.2rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+
+.lightbox-nav:hover,
+.lightbox-close:hover {
+    opacity: 1;
+    background: rgba(255,255,255,0.25);
+}
+
+@media (max-width: 600px) {
+    .lightbox-nav {
+        width: 44px;
+        height: 44px;
+        font-size: 1.6rem;
+    }
+    .lightbox-close {
+        font-size: 2.2rem;
+        top: 10px;
+        right: 14px;
+    }
+}
+
 /* Contact Section */
 .contact {
     background: #f8f9fa;
@@ -535,6 +713,11 @@ footer {
     .accommodation-grid,
     .notes-grid {
         grid-template-columns: 1fr;
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 
     .logic-grid {

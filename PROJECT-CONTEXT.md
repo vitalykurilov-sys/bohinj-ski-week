@@ -34,8 +34,11 @@
 ## Google Sheets
 
 - **Таблица:** Bohinj Ski Leads (в твоём Google Drive)
+- **URL:** https://docs.google.com/spreadsheets/d/1d2izG1DEoKwpEQx1kUgB3bpvU_9IgzJ8Vs0IKHd-67g/edit
 - **Колонки:** Date | Name | Email | Phone | Dates | People | Message | Status
 - **Apps Script URL:** `https://script.google.com/macros/s/AKfycby-u39EYhpW54wzG7SEMwJYI1x1vLuk1C7vQuTAV-sPmubJPnFYaXqH3vgaOvGs-SRgbg/exec`
+
+> С 12.05.2026 в Sheet также пишутся `consent`, `marketing`, `consentTimestamp` (GDPR audit trail). Если таблица не отображает эти колонки - надо добавить заголовки или обновить Apps Script.
 
 ---
 
