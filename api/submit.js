@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, phone, dates, people, message, consent, marketing, consentTimestamp } = req.body;
+    const { name, email, phone, dates, people, message, consent, marketing, consentTimestamp, src } = req.body;
 
     // Validate required fields (phone is optional)
     if (!name || !email) {
@@ -48,6 +48,7 @@ export default async function handler(req, res) {
     // Telegram notification without personal data (GDPR: no PII via Telegram)
     const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/1d2izG1DEoKwpEQx1kUgB3bpvU_9IgzJ8Vs0IKHd-67g/edit';
     const telegramMessage = `New booking inquiry - ${dates || 'dates not specified'}, ${people || '?'} people
+Source: ${src || 'direct'}
 
 Check details: ${SHEETS_URL}
 
@@ -74,10 +75,13 @@ ${new Date().toLocaleString('en-GB', { timeZone: 'Europe/Ljubljana' })}`.trim();
     const GOOGLE_SHEETS_URL = process.env.GOOGLE_SHEETS_URL;
     if (GOOGLE_SHEETS_URL) {
       try {
+        // src goes both as its own field and as a tag inside message, so it
+        // lands in the Sheet even if the Apps Script maps fixed columns only
+        const sheetMessage = src ? `${message || ''}\n[src: ${src}]`.trim() : message;
         await fetch(GOOGLE_SHEETS_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, phone, dates, people, message, consent, marketing, consentTimestamp })
+          body: JSON.stringify({ name, email, phone, dates, people, message: sheetMessage, consent, marketing, consentTimestamp, src })
         });
       } catch (e) {
         console.error('Google Sheets error:', e);
@@ -95,6 +99,7 @@ ${new Date().toLocaleString('en-GB', { timeZone: 'Europe/Ljubljana' })}`.trim();
         <p><strong>Preferred Dates:</strong> ${dates || 'Not specified'}</p>
         <p><strong>Number of People:</strong> ${people || 'Not specified'}</p>
         <p><strong>Message:</strong><br>${message || 'No message'}</p>
+        <p><strong>Source:</strong> ${src || 'direct'}</p>
         <hr>
         <p><small>Sent from bohinj-ski-week.vercel.app at ${new Date().toLocaleString()}</small></p>
       `;

@@ -31,7 +31,8 @@ document.getElementById('bookingForm').addEventListener('submit', async function
         message: formData.get('message'),
         consent: formData.get('consent') === 'on',
         marketing: formData.get('marketing') === 'on',
-        consentTimestamp: new Date().toISOString()
+        consentTimestamp: new Date().toISOString(),
+        src: new URLSearchParams(window.location.search).get('src') || ''
     };
 
     // Get form message element
