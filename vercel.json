@@ -4,18 +4,5 @@
       "memory": 256,
       "maxDuration": 10
     }
-  },
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "bohinj-ski-week.vercel.app"
-        }
-      ],
-      "destination": "https://bohinjskiweek.com/:path*",
-      "permanent": true
-    }
-  ]
+  }
 }
