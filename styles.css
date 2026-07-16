@@ -366,6 +366,38 @@ h3 {
     line-height: 1.7;
 }
 
+/* FAQ Section */
+.faq {
+    background: #f8f9fa;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-item h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 0.5rem;
+}
+
+.faq-item p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
 /* Booking Section */
 .booking {
     background: #333;
