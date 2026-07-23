@@ -2,8 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://bohinjskiweek.com/</loc>
-    <lastmod>2026-07-16</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://bohinjskiweek.com/hu/</loc>
+    <lastmod>2026-07-23</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bohinjskiweek.com/hr/</loc>
+    <lastmod>2026-07-23</lastmod>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bohinjskiweek.com/privacy.html</loc>
