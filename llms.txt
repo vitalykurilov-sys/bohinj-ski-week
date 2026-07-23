@@ -36,7 +36,7 @@ Ski equipment rental: +EUR 80 per adult, +EUR 65 per child, for the week. Food a
 Children up to 14 years old receive a EUR 100 discount on the package price. Ski school is optional per person: guests who already ski can skip lessons and the quote is adjusted; non-skiers can use the wellness facilities and swimming pool instead. Early-bird: book with a deposit by September 30, 2026 and ski equipment rental is free for the whole group (skis, boots and helmets), worth up to EUR 290 for a family of four. The package price itself does not change.
 
 ## Example
-A family of 2 adults and 2 children under 14, with full equipment rental for everyone, pays about EUR 2,740 in total, or EUR 2,450 with the early-bird offer (rental free).
+A family of 2 adults and 2 children under 14 pays EUR 2,450 after the children's discount (package EUR 2,650 minus EUR 100 per child). Equipment rental adds EUR 290 for this family, so EUR 2,740 in total. With the early-bird offer the rental is free and the total stays EUR 2,450. The package price itself is never discounted.
 
 ## Cancellation
 Full refund for cancellations up to 7 days before arrival. A 30% deposit secures the booking, and the balance is paid before the trip.
