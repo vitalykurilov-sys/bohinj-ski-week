@@ -67,6 +67,46 @@ body {
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
+/* Early-Bird Banner */
+.early-bird-banner {
+    background: #222;
+    color: #fff;
+    padding: 0.9rem 1.5rem;
+    text-align: center;
+}
+
+.early-bird-banner p {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.early-bird-link {
+    display: inline-block;
+    margin-left: 0.6rem;
+    padding: 0.3rem 1rem;
+    background: #4A90E2;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
+}
+
+.early-bird-link:hover {
+    background: #3a7bc8;
+}
+
+@media (max-width: 600px) {
+    .early-bird-link {
+        display: block;
+        margin: 0.6rem auto 0;
+        max-width: 160px;
+    }
+}
+
 /* Section Styles */
 section {
     padding: 80px 0;
