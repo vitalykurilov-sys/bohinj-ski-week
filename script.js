@@ -176,3 +176,94 @@ document.querySelector('.hero').style.transform = 'translateY(0)';
         if (e.key === 'ArrowLeft') show(current - 1);
     });
 })();
+
+// Engagement beacon (anonymous, no cookies, no identifiers)
+(function() {
+    let start = performance.now();
+    let elapsed = 0;
+    let running = true;
+    let maxDepth = 0;
+    let sent = false;
+
+    // Sections in DOM order; deepest-seen index wins so a user who scrolls
+    // past a section and back up still gets credited for the deepest point
+    const sections = Array.from(document.querySelectorAll('section'));
+    let deepestSectionIndex = -1;
+
+    if (sections.length) {
+        const sectionObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const index = sections.indexOf(entry.target);
+                if (index > deepestSectionIndex) {
+                    deepestSectionIndex = index;
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => sectionObserver.observe(section));
+    }
+
+    function updateDepth() {
+        const doc = document.documentElement;
+        const scrollHeight = doc.scrollHeight;
+        if (!scrollHeight) return;
+        const percent = ((window.scrollY + window.innerHeight) / scrollHeight) * 100;
+        maxDepth = Math.max(maxDepth, Math.min(100, Math.max(0, percent)));
+    }
+
+    window.addEventListener('scroll', updateDepth, { passive: true });
+    updateDepth();
+
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden') {
+            if (running) {
+                elapsed += performance.now() - start;
+                running = false;
+            }
+            sendBeacon();
+        } else if (document.visibilityState === 'visible') {
+            start = performance.now();
+            running = true;
+        }
+    });
+
+    window.addEventListener('pagehide', function() {
+        if (running) {
+            elapsed += performance.now() - start;
+            running = false;
+        }
+        sendBeacon();
+    });
+
+    function getLocale() {
+        const path = window.location.pathname;
+        if (path.indexOf('/hu') === 0) return 'hu';
+        if (path.indexOf('/hr') === 0) return 'hr';
+        return 'en';
+    }
+
+    function sendBeacon() {
+        if (sent) return;
+        if (!navigator.sendBeacon) return;
+
+        const seconds = Math.floor(elapsed / 1000);
+        if (seconds < 1) return;
+
+        sent = true;
+
+        const sectionLabel = deepestSectionIndex >= 0
+            ? (sections[deepestSectionIndex].classList[0] || 'unknown')
+            : 'unknown';
+
+        const payload = {
+            t: seconds,
+            d: Math.round(maxDepth),
+            s: sectionLabel,
+            l: getLocale(),
+            src: new URLSearchParams(window.location.search).get('src') || ''
+        };
+
+        navigator.sendBeacon('/api/beacon', new Blob([JSON.stringify(payload)], { type: 'application/json' }));
+    }
+})();
