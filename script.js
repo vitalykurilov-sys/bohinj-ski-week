@@ -256,12 +256,18 @@ document.querySelector('.hero').style.transform = 'translateY(0)';
             ? (sections[deepestSectionIndex].classList[0] || 'unknown')
             : 'unknown';
 
+        let referrerHost = '';
+        try {
+            if (document.referrer) referrerHost = new URL(document.referrer).hostname;
+        } catch (e) { /* malformed referrer, leave empty */ }
+
         const payload = {
             t: seconds,
             d: Math.round(maxDepth),
             s: sectionLabel,
             l: getLocale(),
-            src: new URLSearchParams(window.location.search).get('src') || ''
+            src: new URLSearchParams(window.location.search).get('src') || '',
+            r: referrerHost
         };
 
         navigator.sendBeacon('/api/beacon', new Blob([JSON.stringify(payload)], { type: 'application/json' }));

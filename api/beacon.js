@@ -75,6 +75,11 @@ function sanitizeSrc(value) {
   return value.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 40);
 }
 
+function sanitizeReferrer(value) {
+  if (typeof value !== 'string') return '';
+  return value.toLowerCase().replace(/[^a-z0-9.-]/g, '').slice(0, 60);
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).end();
@@ -97,6 +102,7 @@ export default async function handler(req, res) {
   const s = ALLOWED_SECTIONS.includes(body.s) ? body.s : 'unknown';
   const l = ALLOWED_LOCALES.includes(body.l) ? body.l : 'en';
   const src = sanitizeSrc(body.src);
+  const r = sanitizeReferrer(body.r);
 
   const GOOGLE_SA_EMAIL = process.env.GOOGLE_SA_EMAIL;
   const GOOGLE_SA_PRIVATE_KEY = process.env.GOOGLE_SA_PRIVATE_KEY;
@@ -116,7 +122,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        values: [[new Date().toISOString(), l, src, t, d, s]]
+        values: [[new Date().toISOString(), l, src, t, d, s, r]]
       })
     });
 
