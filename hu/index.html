@@ -393,6 +393,24 @@
                     <p><strong>Délután:</strong> Hazaindulás.</p>
                 </div>
             </div>
+
+            <div class="program-capture">
+                <h3>Szeretnéd emailben megkapni a teljes programot?</h3>
+                <p class="program-capture-text">Add meg az e-mail címed, és elküldjük a programot az árakkal.</p>
+                <form class="program-capture-form" id="programCaptureForm">
+                    <label for="programEmail" class="visually-hidden">E-mail címed</label>
+                    <input type="email" id="programEmail" name="email" placeholder="E-mail címed" required maxlength="120">
+                    <button type="submit">Program kérése</button>
+                </form>
+                <p class="program-capture-note">A küldéssel hozzájárulsz az e-mail címed kezeléséhez a program elküldése céljából. Lásd az <a href="/privacy.html">Adatvédelmi tájékoztatót</a>.</p>
+                <div class="program-capture-consent">
+                    <label class="consent-label">
+                        <input type="checkbox" id="programMarketing" name="marketing">
+                        <span>Szeretnék alkalmanként híreket kapni a Bohinj Ski Weekről (nem kötelező).</span>
+                    </label>
+                </div>
+                <div id="programCaptureMessage" class="program-capture-message"></div>
+            </div>
         </div>
     </section>
 

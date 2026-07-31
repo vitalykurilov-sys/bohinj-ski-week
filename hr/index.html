@@ -405,6 +405,24 @@
                     <p><strong>Poslijepodne:</strong> Odlazak.</p>
                 </div>
             </div>
+
+            <div class="program-capture">
+                <h3>Želite cijeli program na e-mail?</h3>
+                <p class="program-capture-text">Ostavite e-mail adresu i poslat ćemo vam program s cijenama u PDF-u.</p>
+                <form class="program-capture-form" id="programCaptureForm">
+                    <label for="programEmail" class="visually-hidden">Vaša e-mail adresa</label>
+                    <input type="email" id="programEmail" name="email" placeholder="Vaša e-mail adresa" required maxlength="120">
+                    <button type="submit">Pošaljite mi program</button>
+                </form>
+                <p class="program-capture-note">Slanjem pristajete na obradu e-mail adrese radi slanja programa. Pogledajte <a href="/privacy.html">Politiku privatnosti</a>.</p>
+                <div class="program-capture-consent">
+                    <label class="consent-label">
+                        <input type="checkbox" id="programMarketing" name="marketing">
+                        <span>Želim povremeno primati novosti o Bohinj Ski Weeku (nije obavezno).</span>
+                    </label>
+                </div>
+                <div id="programCaptureMessage" class="program-capture-message"></div>
+            </div>
         </div>
     </section>
 

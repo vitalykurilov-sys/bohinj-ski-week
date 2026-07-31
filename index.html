@@ -390,6 +390,24 @@
                     <p><strong>Afternoon:</strong> Departure.</p>
                 </div>
             </div>
+
+            <div class="program-capture">
+                <h3>Want the full program by email?</h3>
+                <p class="program-capture-text">Leave your email and we'll send you the program with prices.</p>
+                <form class="program-capture-form" id="programCaptureForm">
+                    <label for="programEmail" class="visually-hidden">Your email address</label>
+                    <input type="email" id="programEmail" name="email" placeholder="Your email address" required maxlength="120">
+                    <button type="submit">Send me the program</button>
+                </form>
+                <p class="program-capture-note">By submitting you agree to us processing your email address to send you the program. See our <a href="privacy.html">Privacy Policy</a>.</p>
+                <div class="program-capture-consent">
+                    <label class="consent-label">
+                        <input type="checkbox" id="programMarketing" name="marketing">
+                        <span>I'd like to occasionally receive news about Bohinj Ski Week (optional).</span>
+                    </label>
+                </div>
+                <div id="programCaptureMessage" class="program-capture-message"></div>
+            </div>
         </div>
     </section>
 

@@ -273,3 +273,100 @@ document.querySelector('.hero').style.transform = 'translateY(0)';
         navigator.sendBeacon('/api/beacon', new Blob([JSON.stringify(payload)], { type: 'application/json' }));
     }
 })();
+
+// Program Email Capture Handler
+(function() {
+    const form = document.getElementById('programCaptureForm');
+    if (!form) return;
+
+    const messageEl = document.getElementById('programCaptureMessage');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const defaultButtonText = submitBtn ? submitBtn.textContent : '';
+
+    const STRINGS = {
+        en: {
+            sending: 'Sending...',
+            success: 'Thanks! The program is on its way to your inbox within 24 hours.',
+            error: 'Something went wrong. Please try again or email us at info@bohinjskiweek.com.'
+        },
+        hr: {
+            sending: 'Šalje se...',
+            success: 'Hvala! Program stiže na vašu e-mail adresu unutar 24 sata.',
+            error: 'Nešto je pošlo po zlu. Pokušajte ponovno ili nam pišite na info@bohinjskiweek.com.'
+        },
+        hu: {
+            sending: 'Küldés...',
+            success: 'Köszönjük! A program 24 órán belül megérkezik az e-mail címedre.',
+            error: 'Valami hiba történt. Kérjük, próbáld újra, vagy írj nekünk: info@bohinjskiweek.com.'
+        }
+    };
+
+    function getLocale() {
+        const path = window.location.pathname;
+        if (path.indexOf('/hu') === 0) return 'hu';
+        if (path.indexOf('/hr') === 0) return 'hr';
+        return 'en';
+    }
+
+    const locale = getLocale();
+    const strings = STRINGS[locale] || STRINGS.en;
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const emailInput = form.querySelector('input[name="email"]');
+        const marketingInput = form.querySelector('input[name="marketing"]');
+        const email = emailInput ? emailInput.value.trim() : '';
+        const marketing = marketingInput ? marketingInput.checked : false;
+
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = strings.sending;
+        }
+        if (messageEl) {
+            messageEl.className = 'program-capture-message';
+            messageEl.textContent = '';
+        }
+
+        try {
+            const response = await fetch('/api/program', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: email,
+                    locale: locale,
+                    src: new URLSearchParams(window.location.search).get('src') || '',
+                    marketing: marketing
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit');
+            }
+
+            if (messageEl) {
+                messageEl.className = 'program-capture-message success';
+                messageEl.textContent = strings.success;
+            }
+            form.reset();
+
+            setTimeout(() => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = defaultButtonText;
+                }
+            }, 2000);
+
+        } catch (error) {
+            console.error('Error:', error);
+            if (messageEl) {
+                messageEl.className = 'program-capture-message error';
+                messageEl.textContent = strings.error;
+            }
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = defaultButtonText;
+            }
+        }
+    });
+})();
