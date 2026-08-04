@@ -147,6 +147,18 @@ body {
     }
 }
 
+/* Narrow Androids (360px): keep the whole banner, CTA included, above the fold */
+@media (max-width: 380px) {
+    .early-bird-banner {
+        padding: 0.75rem 1rem;
+    }
+
+    .early-bird-banner p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}
+
 /* Section Styles */
 section {
     padding: 80px 0;
