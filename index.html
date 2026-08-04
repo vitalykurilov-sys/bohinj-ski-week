@@ -252,19 +252,23 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (v2) -->
     <section class="hero">
         <div class="hero-content">
             <h1>Learn to Ski in Bohinj</h1>
-            <p class="hero-subtitle">Ski school, apartments and ski passes in one package - Julian Alps, Slovenia</p>
-            <a href="#booking" class="cta-button">Book Now</a>
+            <p class="hero-subtitle">Ski school, apartment and ski passes in one package. 5 nights, Sunday to Friday, Julian Alps, Slovenia.</p>
+            <ul class="hero-facts">
+                <li class="hero-price">Family of 4 from EUR 2,450</li>
+                <li>Lake Bled 20 min, Ljubljana airport 1 h</li>
+            </ul>
+            <!-- EARLY-BIRD DATE: the only visible occurrence above the fold, marked .eb-date -->
+            <p class="hero-earlybird">Book with a deposit by <span class="eb-date">September 30</span> and ski rental is free for your whole group, worth about EUR 290 for a family of four.</p>
+            <div class="hero-actions">
+                <a href="#program-request" class="cta-button">Send me the program</a>
+                <a href="#prices" class="cta-button-secondary">See prices</a>
+            </div>
         </div>
     </section>
-
-    <!-- Early-Bird Banner -->
-    <div class="early-bird-banner">
-        <p>Early-bird: book by September 30 and ski rental is free for your whole group. <a href="#booking" class="early-bird-link">Book now</a></p>
-    </div>
 
     <!-- Concept Section -->
     <section class="concept">
@@ -391,7 +395,7 @@
                 </div>
             </div>
 
-            <div class="program-capture">
+            <div class="program-capture" id="program-request">
                 <h3>Want the full program by email?</h3>
                 <p class="program-capture-text">Leave your email and we'll send you the program with prices.</p>
                 <form class="program-capture-form" id="programCaptureForm">
@@ -457,7 +461,7 @@
     </div>
 
     <!-- Prices Section -->
-    <section class="prices">
+    <section class="prices" id="prices">
         <div class="container">
             <h2>Prices</h2>
             <div class="prices-grid">
@@ -492,6 +496,24 @@
             <p class="price-note">Ski equipment rental is not included: +€80 per adult, +€65 per child for the week. Own equipment? You're all set.</p>
             <p class="price-note">Example: a family of four (2 adults + 2 children under 14) pays €2,450 after the children's discount. Equipment rental adds €290 for this family, so €2,740 in total. With the early-bird offer the rental is free and the total stays €2,450.</p>
             <p class="price-note">Already skiing? Ski school is optional per person: tell us in the booking form who needs lessons and we will adjust your quote.</p>
+
+            <div class="program-capture">
+                <h3>Want the full program and prices by email?</h3>
+                <p class="program-capture-text">Leave your email and we'll send you the program with prices.</p>
+                <form class="program-capture-form">
+                    <label for="programEmailPrices" class="visually-hidden">Your email address</label>
+                    <input type="email" id="programEmailPrices" name="email" placeholder="Your email address" required maxlength="120">
+                    <button type="submit">Send me the program</button>
+                </form>
+                <p class="program-capture-note">By submitting you agree to us processing your email address to send you the program. See our <a href="privacy.html">Privacy Policy</a>.</p>
+                <div class="program-capture-consent">
+                    <label class="consent-label">
+                        <input type="checkbox" id="programMarketingPrices" name="marketing">
+                        <span>I'd like to occasionally receive news about Bohinj Ski Week (optional).</span>
+                    </label>
+                </div>
+                <div class="program-capture-message"></div>
+            </div>
         </div>
     </section>
 

@@ -263,19 +263,23 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (v2) -->
     <section class="hero">
         <div class="hero-content">
             <h1>Naučite skijati u Bohinju</h1>
-            <p class="hero-subtitle">Škola skijanja, apartman i ski karte u jednom paketu - Julijske Alpe, Slovenija</p>
-            <a href="#booking" class="cta-button">Rezervirajte</a>
+            <p class="hero-subtitle">Škola skijanja, apartman i ski karte u jednom paketu. 5 noćenja, od nedjelje do petka, Julijske Alpe, Slovenija.</p>
+            <ul class="hero-facts">
+                <li class="hero-price">Obitelj 2+2 od 2.450 EUR</li>
+                <li>Zagreb 2,5 h vožnje</li>
+            </ul>
+            <!-- EARLY-BIRD DATE: the only visible occurrence above the fold, marked .eb-date -->
+            <p class="hero-earlybird">Rezervirajte uz predujam do <span class="eb-date">30. rujna</span> i najam opreme je besplatan za cijelu grupu, oko 290 EUR za četveročlanu obitelj.</p>
+            <div class="hero-actions">
+                <a href="#program-request" class="cta-button">Pošaljite mi program</a>
+                <a href="#prices" class="cta-button-secondary">Pogledajte cijene</a>
+            </div>
         </div>
     </section>
-
-    <!-- Early-Bird Banner -->
-    <div class="early-bird-banner">
-        <p>Rani booking: rezervirajte do 30. rujna i najam opreme je besplatan za cijelu grupu. <a href="#booking" class="early-bird-link">Rezervirajte</a></p>
-    </div>
 
     <!-- Concept Section -->
     <section class="concept">
@@ -406,7 +410,7 @@
                 </div>
             </div>
 
-            <div class="program-capture">
+            <div class="program-capture" id="program-request">
                 <h3>Želite cijeli program na e-mail?</h3>
                 <p class="program-capture-text">Ostavite e-mail adresu i poslat ćemo vam program s cijenama u PDF-u.</p>
                 <form class="program-capture-form" id="programCaptureForm">
@@ -472,7 +476,7 @@
     </div>
 
     <!-- Prices Section -->
-    <section class="prices">
+    <section class="prices" id="prices">
         <div class="container">
             <h2>Cijene</h2>
             <div class="prices-grid">
@@ -507,6 +511,24 @@
             <p class="price-note">Rani booking: rezervirajte uz predujam do 30. rujna 2026. i najam opreme je besplatan za cijelu grupu.</p>
             <p class="price-note">Najam skijaške opreme nije uključen: +80 EUR po odrasloj osobi, +65 EUR po djetetu za tjedan. Imate vlastitu opremu? Onda ste spremni.</p>
             <p class="price-note">Primjer: četveročlana obitelj (2 odrasle osobe + 2 djeteta mlađa od 14 godina) nakon dječjeg popusta plaća 2450 EUR. Najam opreme dodaje 290 EUR za ovu obitelj, dakle ukupno 2740 EUR. Uz rani booking najam je besplatan i ukupan iznos ostaje 2450 EUR.</p>
+
+            <div class="program-capture">
+                <h3>Želite cijeli program i cijene na e-mail?</h3>
+                <p class="program-capture-text">Ostavite e-mail adresu i poslat ćemo vam program s cijenama u PDF-u.</p>
+                <form class="program-capture-form">
+                    <label for="programEmailPrices" class="visually-hidden">Vaša e-mail adresa</label>
+                    <input type="email" id="programEmailPrices" name="email" placeholder="Vaša e-mail adresa" required maxlength="120">
+                    <button type="submit">Pošaljite mi program</button>
+                </form>
+                <p class="program-capture-note">Slanjem pristajete na obradu e-mail adrese radi slanja programa. Pogledajte <a href="/privacy.html">Politiku privatnosti</a>.</p>
+                <div class="program-capture-consent">
+                    <label class="consent-label">
+                        <input type="checkbox" id="programMarketingPrices" name="marketing">
+                        <span>Želim povremeno primati novosti o Bohinj Ski Weeku (nije obavezno).</span>
+                    </label>
+                </div>
+                <div class="program-capture-message"></div>
+            </div>
         </div>
     </section>
 

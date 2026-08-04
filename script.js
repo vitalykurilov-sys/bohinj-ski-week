@@ -79,13 +79,8 @@ document.getElementById('bookingForm').addEventListener('submit', async function
     }
 });
 
-// Smooth scroll for CTA button
-document.querySelector('.cta-button').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector('#booking').scrollIntoView({
-        behavior: 'smooth'
-    });
-});
+// Hero CTAs are plain anchors (#program-request, #prices).
+// Smooth scrolling comes from `html { scroll-behavior: smooth }` in styles.css.
 
 // Optional: Add animation on scroll
 const observerOptions = {
@@ -274,14 +269,10 @@ document.querySelector('.hero').style.transform = 'translateY(0)';
     }
 })();
 
-// Program Email Capture Handler
+// Program Email Capture Handler (one block after the program, one after the prices)
 (function() {
-    const form = document.getElementById('programCaptureForm');
-    if (!form) return;
-
-    const messageEl = document.getElementById('programCaptureMessage');
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const defaultButtonText = submitBtn ? submitBtn.textContent : '';
+    const blocks = document.querySelectorAll('.program-capture');
+    if (!blocks.length) return;
 
     const STRINGS = {
         en: {
@@ -311,62 +302,71 @@ document.querySelector('.hero').style.transform = 'translateY(0)';
     const locale = getLocale();
     const strings = STRINGS[locale] || STRINGS.en;
 
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
+    blocks.forEach(function(block) {
+        const form = block.querySelector('.program-capture-form');
+        if (!form) return;
 
-        const emailInput = form.querySelector('input[name="email"]');
-        const marketingInput = form.querySelector('input[name="marketing"]');
-        const email = emailInput ? emailInput.value.trim() : '';
-        const marketing = marketingInput ? marketingInput.checked : false;
+        const messageEl = block.querySelector('.program-capture-message');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const defaultButtonText = submitBtn ? submitBtn.textContent : '';
 
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.textContent = strings.sending;
-        }
-        if (messageEl) {
-            messageEl.className = 'program-capture-message';
-            messageEl.textContent = '';
-        }
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
 
-        try {
-            const response = await fetch('/api/program', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email: email,
-                    locale: locale,
-                    src: new URLSearchParams(window.location.search).get('src') || '',
-                    marketing: marketing
-                })
-            });
+            const emailInput = form.querySelector('input[name="email"]');
+            const marketingInput = form.querySelector('input[name="marketing"]');
+            const email = emailInput ? emailInput.value.trim() : '';
+            const marketing = marketingInput ? marketingInput.checked : false;
 
-            if (!response.ok) {
-                throw new Error('Failed to submit');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = strings.sending;
             }
-
             if (messageEl) {
-                messageEl.className = 'program-capture-message success';
-                messageEl.textContent = strings.success;
+                messageEl.className = 'program-capture-message';
+                messageEl.textContent = '';
             }
-            form.reset();
 
-            setTimeout(() => {
+            try {
+                const response = await fetch('/api/program', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        locale: locale,
+                        src: new URLSearchParams(window.location.search).get('src') || '',
+                        marketing: marketing
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to submit');
+                }
+
+                if (messageEl) {
+                    messageEl.className = 'program-capture-message success';
+                    messageEl.textContent = strings.success;
+                }
+                form.reset();
+
+                setTimeout(() => {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = defaultButtonText;
+                    }
+                }, 2000);
+
+            } catch (error) {
+                console.error('Error:', error);
+                if (messageEl) {
+                    messageEl.className = 'program-capture-message error';
+                    messageEl.textContent = strings.error;
+                }
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.textContent = defaultButtonText;
                 }
-            }, 2000);
-
-        } catch (error) {
-            console.error('Error:', error);
-            if (messageEl) {
-                messageEl.className = 'program-capture-message error';
-                messageEl.textContent = strings.error;
             }
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = defaultButtonText;
-            }
-        }
+        });
     });
 })();

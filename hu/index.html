@@ -255,19 +255,23 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (v2) -->
     <section class="hero">
         <div class="hero-content">
             <h1>Tanulj síelni Bohinjban</h1>
-            <p class="hero-subtitle">Síiskola, apartman és síbérletek egy csomagban - Júliai-Alpok, Szlovénia</p>
-            <a href="#booking" class="cta-button">Foglalj most</a>
+            <p class="hero-subtitle">Síiskola, apartman és síbérletek egy csomagban. 5 éjszaka, vasárnaptól péntekig, Júliai-Alpok, Szlovénia.</p>
+            <ul class="hero-facts">
+                <li class="hero-price">4 fős család 2.450 eurótól</li>
+                <li>Budapesttől kb. 5,5 óra autóval</li>
+            </ul>
+            <!-- EARLY-BIRD DATE: the only visible occurrence above the fold, marked .eb-date -->
+            <p class="hero-earlybird">Foglalj foglalóval <span class="eb-date">szeptember 30-ig</span>, és a sífelszerelés kölcsönzése ingyenes az egész csoportnak, ez négyfős családnál kb. 290 euró.</p>
+            <div class="hero-actions">
+                <a href="#program-request" class="cta-button">Kérem a programot</a>
+                <a href="#prices" class="cta-button-secondary">Árak megtekintése</a>
+            </div>
         </div>
     </section>
-
-    <!-- Early-Bird Banner -->
-    <div class="early-bird-banner">
-        <p>Előfoglalás: foglalj szeptember 30-ig, és a síkölcsönzés ingyenes az egész csoportnak. <a href="#booking" class="early-bird-link">Foglalj most</a></p>
-    </div>
 
     <!-- Concept Section -->
     <section class="concept">
@@ -394,7 +398,7 @@
                 </div>
             </div>
 
-            <div class="program-capture">
+            <div class="program-capture" id="program-request">
                 <h3>Szeretnéd emailben megkapni a teljes programot?</h3>
                 <p class="program-capture-text">Add meg az e-mail címed, és elküldjük a programot az árakkal.</p>
                 <form class="program-capture-form" id="programCaptureForm">
@@ -460,7 +464,7 @@
     </div>
 
     <!-- Prices Section -->
-    <section class="prices">
+    <section class="prices" id="prices">
         <div class="container">
             <h2>Árak</h2>
             <div class="prices-grid">
@@ -495,6 +499,24 @@
             <p class="price-note">A sífelszerelés kölcsönzése nincs az árban: +80 euró felnőttenként, +65 euró gyerekenként a hétre. Saját felszerelés? Akkor minden rendben.</p>
             <p class="price-note">Példa: egy négyfős család (2 felnőtt + 2, 14 év alatti gyerek) a gyerekkedvezmény után 2450 eurót fizet. A felszerelés kölcsönzése 290 euróval növeli az összeget, így összesen 2740 euró. Az előfoglalási ajánlattal a kölcsönzés ingyenes, és az összeg 2450 euró marad.</p>
             <p class="price-note">Már síelsz? A síiskola személyenként választható: írd meg a foglalási űrlapon, kinek kell oktatás, és módosítjuk az árajánlatot.</p>
+
+            <div class="program-capture">
+                <h3>Szeretnéd emailben megkapni a teljes programot és az árakat?</h3>
+                <p class="program-capture-text">Add meg az e-mail címed, és elküldjük a programot az árakkal.</p>
+                <form class="program-capture-form">
+                    <label for="programEmailPrices" class="visually-hidden">E-mail címed</label>
+                    <input type="email" id="programEmailPrices" name="email" placeholder="E-mail címed" required maxlength="120">
+                    <button type="submit">Program kérése</button>
+                </form>
+                <p class="program-capture-note">A küldéssel hozzájárulsz az e-mail címed kezeléséhez a program elküldése céljából. Lásd az <a href="/privacy.html">Adatvédelmi tájékoztatót</a>.</p>
+                <div class="program-capture-consent">
+                    <label class="consent-label">
+                        <input type="checkbox" id="programMarketingPrices" name="marketing">
+                        <span>Szeretnék alkalmanként híreket kapni a Bohinj Ski Weekről (nem kötelező).</span>
+                    </label>
+                </div>
+                <div class="program-capture-message"></div>
+            </div>
         </div>
     </section>
 
