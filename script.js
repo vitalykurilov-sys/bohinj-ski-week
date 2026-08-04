@@ -1,3 +1,36 @@
+// Meta Pixel, loaded ONLY after an explicit Accept in the cookie banner.
+// Nothing here touches facebook.com until hasCookieConsent() is true.
+const META_PIXEL_ID = '1941240377263284';
+
+function hasCookieConsent() {
+    return localStorage.getItem('cookieConsent') === 'accepted';
+}
+
+function loadMetaPixel() {
+    if (window.fbq) return;
+
+    // Standard Meta bootstrap. The usual <noscript> image fallback is left out on
+    // purpose: it would fire for no-JS visitors before they ever see the banner.
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    window.fbq('init', META_PIXEL_ID);
+    window.fbq('track', 'PageView');
+}
+
+function trackMetaEvent(eventName) {
+    if (hasCookieConsent() && window.fbq) {
+        window.fbq('track', eventName);
+    }
+}
+
+if (hasCookieConsent()) {
+    loadMetaPixel();
+}
+
 // Cookie Banner
 (function() {
     const banner = document.getElementById('cookieBanner');
@@ -9,6 +42,8 @@
         localStorage.setItem('cookieConsent', 'accepted');
         localStorage.setItem('cookieConsentDate', new Date().toISOString());
         banner.hidden = true;
+        // Inject immediately, no reload needed
+        loadMetaPixel();
     });
     document.getElementById('cookieReject').addEventListener('click', function() {
         localStorage.setItem('cookieConsent', 'rejected');
@@ -347,6 +382,7 @@ document.querySelector('.hero').style.transform = 'translateY(0)';
                     messageEl.className = 'program-capture-message success';
                     messageEl.textContent = strings.success;
                 }
+                trackMetaEvent('Lead');
                 form.reset();
 
                 setTimeout(() => {
