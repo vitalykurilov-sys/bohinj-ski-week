@@ -18,7 +18,7 @@ body {
     padding: 0 20px;
 }
 
-/* Hero Section (v2: price anchor, geo anchor, early-bird, two CTAs) */
+/* Hero Section (v2: price anchor, geo anchor, two CTAs; early-bird lives in the banner below) */
 .hero {
     min-height: 80vh;
     padding: 4.5rem 1.25rem;
@@ -46,55 +46,26 @@ body {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
 }
 
-.hero-subtitle {
+/* Subtitle and the two anchor lines below it share one type scale */
+.hero-subtitle,
+.hero-fact {
     font-size: clamp(1rem, 3.6vw, 1.35rem);
     line-height: 1.45;
-    margin-bottom: 1.4rem;
     font-weight: 300;
     text-shadow: 0 1px 3px rgba(0,0,0,0.35);
 }
 
-/* Price and geo anchors */
-.hero-facts {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.6rem;
-    margin: 0 0 1.1rem;
-    padding: 0;
+.hero-subtitle {
+    margin-bottom: 1.2rem;
 }
 
-.hero-facts li {
-    background: rgba(255, 255, 255, 0.16);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 50px;
-    padding: 0.45rem 1.1rem;
-    font-size: clamp(0.95rem, 3.4vw, 1.1rem);
-    line-height: 1.35;
-}
-
-.hero-facts .hero-price {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: #fff;
-    color: #1b1b1b;
-    font-weight: 700;
-}
-
-/* Early-bird plate. Date lives in .eb-date, one place per locale */
-.hero-earlybird {
-    display: inline-block;
-    max-width: 620px;
-    background: rgba(74, 144, 226, 0.95);
-    color: #fff;
-    border-radius: 10px;
-    padding: 0.6rem 1.1rem;
-    margin-bottom: 1.6rem;
-    font-size: clamp(0.88rem, 3.2vw, 1rem);
-    line-height: 1.45;
+/* Price anchor (bold) and geo anchor */
+.hero-fact {
+    margin-bottom: 0.3rem;
 }
 
 .hero-actions {
+    margin-top: 1.8rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
