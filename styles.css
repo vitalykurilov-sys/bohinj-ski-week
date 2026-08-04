@@ -38,6 +38,61 @@ body {
     max-width: 760px;
 }
 
+/* Language switch in the top right of the hero. The footer switch stays as is. */
+.lang-switch {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.25rem;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.lang-switch a,
+.lang-switch .lang-current {
+    display: block;
+    padding: 0.5rem 0.8rem;
+    line-height: 1;
+    border-radius: 50px;
+    text-decoration: none;
+}
+
+.lang-switch a {
+    color: rgba(255, 255, 255, 0.85);
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.lang-switch a:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+}
+
+.lang-switch .lang-current {
+    background: #fff;
+    color: #333;
+}
+
+@media (max-width: 380px) {
+    .lang-switch {
+        top: 0.7rem;
+        right: 0.7rem;
+        font-size: 0.85rem;
+    }
+
+    .lang-switch a,
+    .lang-switch .lang-current {
+        padding: 0.45rem 0.65rem;
+    }
+}
+
 .hero h1 {
     font-size: clamp(2.1rem, 7vw, 4rem);
     line-height: 1.15;
