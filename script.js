@@ -67,7 +67,8 @@ document.getElementById('bookingForm').addEventListener('submit', async function
         consent: formData.get('consent') === 'on',
         marketing: formData.get('marketing') === 'on',
         consentTimestamp: new Date().toISOString(),
-        src: new URLSearchParams(window.location.search).get('src') || ''
+        src: new URLSearchParams(window.location.search).get('src') || '',
+        locale: window.location.pathname.indexOf('/hu') === 0 ? 'hu' : window.location.pathname.indexOf('/hr') === 0 ? 'hr' : 'en'
     };
 
     // Get form message element
