@@ -21,11 +21,18 @@ function loadMetaPixel() {
     window.fbq('track', 'PageView');
 }
 
-function trackMetaEvent(eventName) {
+function trackMetaEvent(eventName, params) {
     if (hasCookieConsent() && window.fbq) {
-        window.fbq('track', eventName);
+        if (params) {
+            window.fbq('track', eventName, params);
+        } else {
+            window.fbq('track', eventName);
+        }
     }
 }
+
+// Package price per group size, mirrors the JSON-LD offers on the landing pages.
+const PACKAGE_PRICES = { 1: 1650, 2: 1950, 3: 2390, 4: 2650, 5: 3320, 6: 3980 };
 
 if (hasCookieConsent()) {
     loadMetaPixel();
@@ -94,6 +101,13 @@ document.getElementById('bookingForm').addEventListener('submit', async function
         // Show success message
         formMessage.className = 'form-message success';
         formMessage.textContent = 'Thank you for your booking request! We will contact you within 24 hours.';
+
+        // Purchase = booking request; the actual payment happens offline (bank transfer),
+        // so this form submit is the closest trackable point to a sale.
+        trackMetaEvent('Purchase', {
+            value: PACKAGE_PRICES[Number(data.people)] || 0,
+            currency: 'EUR'
+        });
 
         // Reset form
         this.reset();
