@@ -1130,11 +1130,26 @@ html {
 }
 
 @media (max-width: 600px) {
+    .cookie-banner {
+        padding: 0.6rem 0.9rem;
+    }
+    .cookie-banner-content {
+        gap: 0.6rem;
+    }
+    .cookie-banner-text {
+        font-size: 0.78rem;
+        line-height: 1.35;
+        min-width: 0;
+    }
     .cookie-banner-buttons {
         width: 100%;
+        gap: 0.6rem;
     }
     .cookie-btn {
         flex: 1;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        min-width: 0;
     }
 }
 
