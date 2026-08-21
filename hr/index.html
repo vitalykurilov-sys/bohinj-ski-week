@@ -13,6 +13,23 @@
     <link rel="alternate" hreflang="x-default" href="https://bohinjskiweek.com/">
     <link rel="stylesheet" href="/styles.css">
 
+    <!--
+      Ad-variant switch for the hr-b cell (adults without kids).
+      Sets a flag on <html> before the body is parsed, so the first-screen swap
+      is done by CSS and variant B is painted on the very first frame.
+      Any other entry (hr-a, organic, flyers, direct) renders exactly as before.
+    -->
+    <script>
+    (function () {
+        try {
+            var src = new URLSearchParams(window.location.search).get('src') || '';
+            if (src.indexOf('hr-b') === 0) {
+                document.documentElement.setAttribute('data-ad-variant', 'b');
+            }
+        } catch (e) { /* no flag, default page stays */ }
+    })();
+    </script>
+
     <!-- Vercel Web Analytics (cookieless, anonymized) -->
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -271,10 +288,22 @@
             <span class="lang-current" aria-current="page">HR</span>
             <a href="/hu/" hreflang="hu" lang="hu">HU</a>
         </nav>
-        <div class="hero-content">
+        <!-- Default first screen: every entry except the hr-b ad label -->
+        <div class="hero-content variant-a">
             <h1>Naučite skijati u Bohinju</h1>
             <p class="hero-subtitle">Škola skijanja, apartman i ski karte u jednom paketu. 5 noćenja, od nedjelje do petka, Julijske Alpe, Slovenija.</p>
             <p class="hero-fact"><strong>Obitelj 2+2 od 2.450 EUR</strong></p>
+            <p class="hero-fact">Zagreb 2,5 h vožnje</p>
+            <div class="hero-actions">
+                <a href="#program-request" class="cta-button">Pošaljite mi program</a>
+                <a href="#prices" class="cta-button-secondary">Pogledajte cijene</a>
+            </div>
+        </div>
+        <!-- First screen for ?src=hr-b* (adults without kids). Same CTAs, same anchors. -->
+        <div class="hero-content variant-b">
+            <h1>Bez gužve na stazama, od nedjelje do petka</h1>
+            <p class="hero-subtitle">Škola skijanja, apartman i ski karte u jednom paketu. 5 noćenja radnim danima, Julijske Alpe, Slovenija.</p>
+            <p class="hero-fact"><strong>Za dvoje 1.950 EUR</strong></p>
             <p class="hero-fact">Zagreb 2,5 h vožnje</p>
             <div class="hero-actions">
                 <a href="#program-request" class="cta-button">Pošaljite mi program</a>
@@ -285,14 +314,15 @@
 
     <!-- Early-Bird Banner. EARLY-BIRD DATE: the only visible occurrence above the fold, marked .eb-date -->
     <div class="early-bird-banner">
-        <p>Rani booking: rezervirajte do <span class="eb-date">30. rujna</span> i najam opreme je besplatan za cijelu grupu, oko 290 EUR za četveročlanu obitelj.</p>
+        <p>Rani booking: rezervirajte do <span class="eb-date">30. rujna</span> i najam opreme je besplatan za cijelu grupu, <span class="variant-a">oko 290 EUR za četveročlanu obitelj</span><span class="variant-b">oko 160 EUR za dvoje odraslih</span>.</p>
     </div>
 
     <!-- Concept Section -->
     <section class="concept">
         <div class="container">
             <h2>Kvalitetno skijanje bez preplaćivanja</h2>
-            <p class="lead">Savršeno za početnike i one koji žele napredovati - sve najbolje od Alpa, prilagođeno skijašima koji se tek uvode</p>
+            <p class="lead variant-a">Savršeno za početnike i one koji žele napredovati - sve najbolje od Alpa, prilagođeno skijašima koji se tek uvode</p>
+            <p class="lead variant-b">Savršeno i za odrasle početnike - grupe se dijele po razini znanja, a odrasli i djeca uče odvojeno, pa napredujete svojim tempom</p>
             <div class="concept-text">
                 <p>Pravo skijanje s izvrsnom uslugom i infrastrukturom, ali bez premium cijena velikih alpskih skijališta.</p>
                 <p><strong>Ako još ne skijate dobro, nema smisla plaćati ozbiljna planinska skijališta - jednostavno vam se to neće isplatiti.</strong></p>

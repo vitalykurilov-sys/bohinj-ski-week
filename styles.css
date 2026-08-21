@@ -1230,3 +1230,34 @@ html {
     padding-top: 1rem;
     border-top: 1px solid #333;
 }
+
+/* ---------------------------------------------------------------------------
+   Ad variant B (hr-b cell: adults without kids), added 21.08.2026.
+   One /hr page, two first screens. An inline script in the <head> of hr/index.html
+   sets data-ad-variant="b" on <html> when the src label starts with hr-b, before
+   the body is parsed - so the swap below is pure CSS and variant B is painted on
+   the first frame, with no flash of the default version.
+   Without the flag nothing here matches and the page renders exactly as before.
+--------------------------------------------------------------------------- */
+.variant-b {
+    display: none;
+}
+
+html[data-ad-variant="b"] .variant-a {
+    display: none;
+}
+
+html[data-ad-variant="b"] .hero-content.variant-b,
+html[data-ad-variant="b"] p.lead.variant-b {
+    display: block;
+}
+
+/* Inline swaps inside a sentence (early-bird amount) stay inline. */
+html[data-ad-variant="b"] span.variant-b {
+    display: inline;
+}
+
+html[data-ad-variant="b"] .hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+                url('images/hero-b.jpg') center/cover;
+}
