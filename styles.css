@@ -1238,6 +1238,8 @@ html {
    the body is parsed - so the swap below is pure CSS and variant B is painted on
    the first frame, with no flash of the default version.
    Without the flag nothing here matches and the page renders exactly as before.
+   14.09.2026: /hu uses the same rules for its hu-b cell (script in hu/index.html
+   keyed on hu-b). Nothing here is page-specific, so no duplication.
 --------------------------------------------------------------------------- */
 .variant-b {
     display: none;

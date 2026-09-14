@@ -13,6 +13,24 @@
     <link rel="alternate" hreflang="x-default" href="https://bohinjskiweek.com/">
     <link rel="stylesheet" href="/styles.css">
 
+    <!--
+      Ad-variant switch for the hu-b cell (adults without kids), same mechanism
+      as /hr (hr-b, 21.08.2026). Sets a flag on <html> before the body is parsed,
+      so the first-screen swap is done by CSS and variant B is painted on the
+      very first frame. Any other entry (hu-a, organic, direct) renders exactly
+      as before.
+    -->
+    <script>
+    (function () {
+        try {
+            var src = new URLSearchParams(window.location.search).get('src') || '';
+            if (src.indexOf('hu-b') === 0) {
+                document.documentElement.setAttribute('data-ad-variant', 'b');
+            }
+        } catch (e) { /* no flag, default page stays */ }
+    })();
+    </script>
+
     <!-- Vercel Web Analytics (cookieless, anonymized) -->
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -263,7 +281,8 @@
             <a href="/hr/" hreflang="hr" lang="hr">HR</a>
             <span class="lang-current" aria-current="page">HU</span>
         </nav>
-        <div class="hero-content">
+        <!-- Default first screen: every entry except the hu-b ad label -->
+        <div class="hero-content variant-a">
             <h1>Tanulj síelni Bohinjban</h1>
             <p class="hero-subtitle">Síiskola, apartman és síbérletek egy csomagban. 5 éjszaka, vasárnaptól péntekig, Júliai-Alpok, Szlovénia.</p>
             <p class="hero-fact"><strong>4 fős család 2.450 eurótól</strong></p>
@@ -273,18 +292,30 @@
                 <a href="#prices" class="cta-button-secondary">Árak megtekintése</a>
             </div>
         </div>
+        <!-- First screen for ?src=hu-b* (adults without kids). Same CTAs, same anchors.
+             No hours-to-Budapest line here by design (HU rule since 10.08: no geo anchor). -->
+        <div class="hero-content variant-b">
+            <h1>Tömeg nélkül a pályán, vasárnaptól péntekig</h1>
+            <p class="hero-subtitle">Síiskola, apartman és síbérletek egy csomagban. 5 éjszaka hétköznap, Júliai-Alpok, Szlovénia.</p>
+            <p class="hero-fact"><strong>2 főre 1.950 euró</strong></p>
+            <div class="hero-actions">
+                <a href="#program-request" class="cta-button">Kérem a programot</a>
+                <a href="#prices" class="cta-button-secondary">Árak megtekintése</a>
+            </div>
+        </div>
     </section>
 
     <!-- Early-Bird Banner. EARLY-BIRD DATE: the only visible occurrence above the fold, marked .eb-date -->
     <div class="early-bird-banner">
-        <p>Előfoglalás: foglalj <span class="eb-date">szeptember 30-ig</span>, és a síkölcsönzés ingyenes az egész csoportnak, ez kb. 290 euró egy négyfős családnál.</p>
+        <p>Előfoglalás: foglalj <span class="eb-date">szeptember 30-ig</span>, és a síkölcsönzés ingyenes az egész csoportnak, <span class="variant-a">ez kb. 290 euró egy négyfős családnál</span><span class="variant-b">ez kb. 160 euró két felnőttnél</span>.</p>
     </div>
 
     <!-- Concept Section -->
     <section class="concept">
         <div class="container">
             <h2>Minőségi síelés borsos árak nélkül</h2>
-            <p class="lead">Tökéletes kezdőknek és azoknak, akik fejlődni szeretnének - pontosan azt kínálja az Alpokból, amire egy fejlődő síelőnek szüksége van</p>
+            <p class="lead variant-a">Tökéletes kezdőknek és azoknak, akik fejlődni szeretnének - pontosan azt kínálja az Alpokból, amire egy fejlődő síelőnek szüksége van</p>
+            <p class="lead variant-b">Felnőtt kezdőknek is tökéletes - a csoportokat tudásszint szerint osztjuk fel, a felnőttek és a gyerekek külön tanulnak, így a saját tempódban haladsz</p>
             <div class="concept-text">
                 <p>Igazi síelés kiváló szolgáltatással és infrastruktúrával, a nagy alpesi síterepek prémium árai nélkül.</p>
                 <p><strong>Ha még nem síelsz igazán magabiztosan, kár lenne komoly hegyi síterepekre költeni a pénzt - úgysem tudnád kihasználni, amiért fizetsz.</strong></p>
