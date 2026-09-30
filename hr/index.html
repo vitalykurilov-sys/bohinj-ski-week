@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/styles.css">
 
     <!--
-      Ad-variant switch for the hr-b cell (adults without kids).
+      Ad-variant switch for the hr-b and hr-c cells (adults without kids).
       Sets a flag on <html> before the body is parsed, so the first-screen swap
       is done by CSS and variant B is painted on the very first frame.
       Any other entry (hr-a, organic, flyers, direct) renders exactly as before.
@@ -23,7 +23,7 @@
     (function () {
         try {
             var src = new URLSearchParams(window.location.search).get('src') || '';
-            if (src.indexOf('hr-b') === 0) {
+            if (src.indexOf('hr-b') === 0 || /^hr-c(-|$)/.test(src)) {
                 document.documentElement.setAttribute('data-ad-variant', 'b');
             }
         } catch (e) { /* no flag, default page stays */ }
@@ -204,7 +204,7 @@
       "name": "Trebam li vlastitu skijašku opremu?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ne. Najam skijaške opreme za tjedan iznosi +80 EUR po odrasloj osobi i +65 EUR po djetetu, a može se organizirati po dolasku. Ako donesete vlastitu opremu, jednostavno ne plaćate ovu naknadu. Uz rani booking (rezervacija uz predujam do 30. rujna) najam je besplatan za cijelu grupu."
+        "text": "Ne. Najam skijaške opreme za tjedan iznosi +80 EUR po odrasloj osobi i +65 EUR po djetetu, a može se organizirati po dolasku. Ako donesete vlastitu opremu, jednostavno ne plaćate ovu naknadu."
       }
     },
     {
@@ -241,18 +241,18 @@
     },
     {
       "@type": "Question",
-      "name": "Postoji li ponuda za rani booking?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Da. Rezervirajte uz predujam do 30. rujna 2026. i najam skijaške opreme je besplatan za cijelu grupu: skije, pancerice i kacige, u vrijednosti do 290 EUR za četveročlanu obitelj. Sama cijena paketa ostaje ista."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "Koji su uvjeti otkazivanja?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Ostvarujete potpuni povrat novca za otkazivanja do 7 dana prije dolaska. Rezervacija se osigurava predujmom od 30%; ostatak i detalje plaćanja dogovaramo izravno s vama."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Što ako nema snijega?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ako ni na jednom skijalištu u Bohinju nema snijega, dogovorit ćemo s vama drugi termin ili vam vratiti cijeli iznos."
       }
     },
     {
@@ -311,11 +311,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Early-Bird Banner. EARLY-BIRD DATE: the only visible occurrence above the fold, marked .eb-date -->
-    <div class="early-bird-banner">
-        <p>Rani booking: rezervirajte do <span class="eb-date">30. rujna</span> i najam opreme je besplatan za cijelu grupu, <span class="variant-a">oko 290 EUR za četveročlanu obitelj</span><span class="variant-b">oko 160 EUR za dvoje odraslih</span>.</p>
-    </div>
 
     <!-- Concept Section -->
     <section class="concept">
@@ -544,9 +539,8 @@
             </div>
             <p class="price-note">Cijene uključuju smještaj u apartmanu, grupnu poduku s instruktorom i ski karte.</p>
             <p class="price-note"><strong>Djeca do 14 godina ostvaruju popust od 100 EUR.</strong></p>
-            <p class="price-note">Rani booking: rezervirajte uz predujam do 30. rujna 2026. i najam opreme je besplatan za cijelu grupu.</p>
             <p class="price-note">Najam skijaške opreme nije uključen: +80 EUR po odrasloj osobi, +65 EUR po djetetu za tjedan. Imate vlastitu opremu? Onda ste spremni.</p>
-            <p class="price-note">Primjer: četveročlana obitelj (2 odrasle osobe + 2 djeteta mlađa od 14 godina) nakon dječjeg popusta plaća 2450 EUR. Najam opreme dodaje 290 EUR za ovu obitelj, dakle ukupno 2740 EUR. Uz rani booking najam je besplatan i ukupan iznos ostaje 2450 EUR.</p>
+            <p class="price-note">Primjer: četveročlana obitelj (2 odrasle osobe + 2 djeteta mlađa od 14 godina) nakon dječjeg popusta plaća 2450 EUR. Najam opreme dodaje 290 EUR za ovu obitelj, dakle ukupno 2740 EUR.</p>
 
             <div class="program-capture">
                 <h3>Želite cijeli program i cijene na e-mail?</h3>
@@ -617,7 +611,7 @@
                 </div>
                 <div class="faq-item">
                     <h3>Trebam li vlastitu skijašku opremu?</h3>
-                    <p>Ne. Najam skijaške opreme za tjedan iznosi +80 EUR po odrasloj osobi i +65 EUR po djetetu, a može se organizirati po dolasku. Ako donesete vlastitu opremu, jednostavno ne plaćate ovu naknadu. Uz rani booking (rezervacija uz predujam do 30. rujna) najam je besplatan za cijelu grupu.</p>
+                    <p>Ne. Najam skijaške opreme za tjedan iznosi +80 EUR po odrasloj osobi i +65 EUR po djetetu, a može se organizirati po dolasku. Ako donesete vlastitu opremu, jednostavno ne plaćate ovu naknadu.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Kako doći do Bohinja zimi?</h3>
@@ -636,12 +630,12 @@
                     <p>Radnim danima su staze mirnije i red za žičaru kraći - zato je ski tjedan posložen od nedjelje do petka, a ne za vikend.</p>
                 </div>
                 <div class="faq-item">
-                    <h3>Postoji li ponuda za rani booking?</h3>
-                    <p>Da. Rezervirajte uz predujam do 30. rujna 2026. i najam skijaške opreme je besplatan za cijelu grupu: skije, pancerice i kacige, u vrijednosti do 290 EUR za četveročlanu obitelj. Sama cijena paketa ostaje ista.</p>
-                </div>
-                <div class="faq-item">
                     <h3>Koji su uvjeti otkazivanja?</h3>
                     <p>Ostvarujete potpuni povrat novca za otkazivanja do 7 dana prije dolaska. Rezervacija se osigurava predujmom od 30%; ostatak i detalje plaćanja dogovaramo izravno s vama.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Što ako nema snijega?</h3>
+                    <p>Ako ni na jednom skijalištu u Bohinju nema snijega, dogovorit ćemo s vama drugi termin ili vam vratiti cijeli iznos.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Na kojem se jeziku održava poduka skijanja?</h3>
